@@ -4,7 +4,13 @@ function link_file {
     target="${HOME}/${1/_/.}"
 
     if [ -e "${target}" ]; then
-        mv $target $target.bak
+        if [ `readlink ${target}` == ${source} ]; then
+            echo "Link already exist, skipping ..."
+        return 2
+        else
+            echo "File exist, move to ${target}.bak"
+            mv ${target} ${target}.bak
+        fi
     fi
 
     ln -sf ${source} ${target}
