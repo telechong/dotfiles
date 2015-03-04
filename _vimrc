@@ -302,4 +302,6 @@ if filereadable($VIRTUAL_ENV . '/.vimrc')
     source $VIRTUAL_ENV/.vimrc
 endif
 
-set colorcolumn=79
+if version >= 703
+    set colorcolumn=79
+endif
